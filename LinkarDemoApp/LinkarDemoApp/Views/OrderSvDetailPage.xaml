@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LinkarDemoApp.Views.OrderSvDetailPage"
+             xmlns:local="clr-namespace:LinkarDemoApp"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateToStringConverter x:Key="dateToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Delivery Date:" FontSize="Medium" />
+        <Label Text="{Binding OrderSv.DeliveryDateTime, Converter={StaticResource dateToString}}" FontSize="Small"/>
+        <Label Text="Partial Quantity:" FontSize="Medium" />
+        <Label Text="{Binding OrderSv.PartialQuantity}" FontSize="Small"/>
+    </StackLayout>
+</ContentPage>
