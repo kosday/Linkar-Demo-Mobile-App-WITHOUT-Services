@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Linkar.Functions.Persistent</name>
+    </assembly>
+    <members>
+        <member name="T:Linkar.Functions.Persistent.NamespaceDoc">
+            <summary>
+            Namespace for Linkar.Functions.Persistent library
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.Persistent.LinkarClient">
+            <summary>
+            These functions perform synchronous persistent (establishing permanent session) operations with any kind of output format type.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.Persistent.LinkarClient.SessionID">
+            <summary>
+            SessionID of the connection.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the LinkarClt class.
+            </summary>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely. When the receiveTimeout argument is omitted in any operation, the value set here will be applied.</param>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Login(Linkar.CredentialOptions,System.String,System.Int32)">
+            <summary>
+            Starts the communication with a server allowing making use of the rest of functions until the Logout method is executed or the connection with the server gets lost, synchronously only.
+            </summary>
+            <param name="credentialOptions">Object with data necessary to access the Linkar Server: Username, Password, EntryPoint, Language, FreeText.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Logout(System.String,System.Int32)">
+            <summary>
+            Closes the communication with the server, that previously has been opened with a Login function, synchronously only.
+            </summary>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Read(System.String,System.String,System.String,Linkar.Functions.ReadOptions,Linkar.Functions.DATAFORMAT_TYPE,Linkar.Functions.DATAFORMATCRU_TYPE,System.String,System.Int32)">
+            <summary>
+            Reads one or several records of a file in synchronous way.
+            </summary>
+            <param name="filename">File name to read.</param>
+            <param name="recordIds">A list of item IDs to read, separated by the Record Separator character (30). Use StringFunctions.ComposeRecordIds to compose this string</param>
+            <param name="dictionaries">List of dictionaries to read, separated by space. If this list is not set, all fields are returned.</param>
+            <param name="readOptions">Object that defines the different reading options of the Function: Calculated, dictClause, conversion, formatSpec, originalRecords.</param>
+            <param name="inputFormat">Indicates in what format you wish to send the record ids: MV, XML or JSON.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the Read, New, Update and Select operations: MV, XML, XML_DICT, XML_SCH, JSON, JSON_DICT or JSON_SCH.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Update(System.String,System.String,Linkar.Functions.UpdateOptions,Linkar.Functions.DATAFORMAT_TYPE,Linkar.Functions.DATAFORMATCRU_TYPE,System.String,System.Int32)">
+            <summary>
+            Update one or several records of a file, synchronously only.
+            </summary>
+            <param name="filename">Name of the file being updated.</param>
+            <param name="records">Buffer of record data to update. Inside this string are the recordIds, the modified records, and the originalRecords. Use the StringFunctions.ComposeUpdateBuffer function to compose this string.</param>
+            <param name="updateOptions">Object with write options, including optimisticLockControl, readAfter, calculated, dictionaries, conversion, formatSpec, originalRecords.</param>
+            <param name="inputFormat">Indicates in what format you wish to send the resultant writing data: MV, XML or JSON.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the Read, New, Update and Select operations: MV, XML, XML_DICT, XML_SCH, JSON, JSON_DICT or JSON_SCH.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.New(System.String,System.String,Linkar.Functions.NewOptions,Linkar.Functions.DATAFORMAT_TYPE,Linkar.Functions.DATAFORMATCRU_TYPE,System.String,System.Int32)">
+            <summary>
+            Creates one or several records of a file, synchronously only.
+            </summary>
+            <param name="filename">Name of the file being updated.</param>
+            <param name="records">Buffer of records to write. Inside this string are the recordIds, and the records. Use StringFunctions.ComposeNewBuffer function to compose this string.</param>
+            <param name="newOptions">Object with write options for the new record(s), including recordIdType, readAfter, calculated, dictionaries, conversion, formatSpec, originalRecords.</param>
+            <param name="inputFormat">Indicates in what format you wish to send the resultant writing data: MV, XML or JSON.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the Read, New, Update and Select operations: MV, XML, XML_DICT, XML_SCH, JSON, JSON_DICT or JSON_SCH.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Delete(System.String,System.String,Linkar.Functions.DeleteOptions,Linkar.Functions.DATAFORMAT_TYPE,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Deletes one or several records in file, synchronously only
+            </summary>
+            <param name="filename">The file name where the records are going to be deleted. DICT in case of deleting a record that belongs to a dictionary.</param>
+            <param name="records">Buffer of records to be deleted. Use StringFunctions.ComposeDeleteBuffer function to compose this string.</param>
+            <param name="deleteOptions">Object with options to manage how records are deleted, including optimisticLockControl, recoverRecordIdType.</param>
+            <param name="inputFormat">Indicates in what format you wish to send the resultant writing data: MV, XML or JSON.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Select(System.String,System.String,System.String,System.String,System.String,Linkar.Functions.SelectOptions,Linkar.Functions.DATAFORMATCRU_TYPE,System.String,System.Int32)">
+            <summary>
+            Executes a Query in the Database, synchronously only.
+            </summary>
+            <param name="filename">Name of file on which the operation is performed. For example LK.ORDERS</param>
+            <param name="selectClause">Statement fragment specifies the selection condition. For example WITH CUSTOMER = '1'</param>
+            <param name="sortClause">Statement fragment specifies the selection order. If there is a selection rule, Linkar will execute a SSELECT, otherwise Linkar will execute a SELECT. For example BY CUSTOMER</param>
+            <param name="dictClause">Space-delimited list of dictionaries to read. If this list is not set, all fields are returned. For example CUSTOMER DATE ITEM</param>
+            <param name="preSelectClause">An optional command that executes before the main Select</param>
+            <param name="selectOptions">Object with options to manage how records are selected, including calculated, dictionaries, conversion, formatSpec, originalRecords, onlyItemId, pagination, regPage, numPage.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the Read, New, Update and Select operations: MV, XML, XML_DICT, XML_SCH, JSON, JSON_DICT or JSON_SCH.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Subroutine(System.String,System.Int32,System.String,Linkar.Functions.DATAFORMAT_TYPE,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Executes a subroutine, synchronously only.
+            </summary>
+            <param name="subroutineName">Name of BASIC subroutine to execute.</param>
+            <param name="argsNumber">Number of arguments</param>
+            <param name="arguments">The subroutine arguments list.</param>
+            <param name="inputFormat">Indicates in what format you wish to send the subroutine arguments: MV, XML or JSON.</param>        /// <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Conversion(Linkar.Functions.CONVERSION_TYPE,System.String,System.String,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Returns the result of executing ICONV() or OCONV() functions from a expression list in the Database, synchronously only.
+            </summary>
+            <param name="conversionType">Indicates the conversion type, input or output: INPUT=ICONV(); OUTPUT=OCONV()</param>
+            <param name="expression">The data or expression to convert. May include MV marks (value delimiters), in which case the conversion will execute in each value obeying the original MV mark.</param>
+            <param name="code">The conversion code. Must obey the Database conversions specifications.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Format(System.String,System.String,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Returns the result of executing the FMT function in a expressions list in the Database, synchronously only.
+            </summary>
+            <param name="expression">The data or expression to format. If multiple values are present, the operation will be performed individually on all values in the expression.</param>
+            <param name="formatSpec">Specified format</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Dictionaries(System.String,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Returns all the dictionaries of a file, synchronously only.
+            </summary>
+            <param name="filename">File name</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.Execute(System.String,Linkar.Functions.DATAFORMAT_TYPE,System.String,System.Int32)">
+            <summary>
+            Allows the execution of any command from the Database synchronously only.
+            </summary>
+            <param name="statement">The command you want to execute in the Database.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.GetLocalVersion">
+            <summary>
+            Allows getting the client version.
+            </summary>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.GetVersion(Linkar.Functions.DATAFORMAT_TYPE,System.Int32)">
+            <summary>
+            Allows getting the server version, synchronously only.
+            </summary>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.LkSchemas(Linkar.Functions.LkSchemasOptions,Linkar.Functions.DATAFORMATSCH_TYPE,System.String,System.Int32)">
+            <summary>
+            Returns a list of all the Schemas defined in Linkar Schemas, or the EntryPoint account data files, synchronously only.
+            </summary>
+            <param name="lkSchemasOptions">This object defines the different options in base of the asked Schema Type: LKSCHEMAS, SQLMODE o DICTIONARIES.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML, JSON or TABLE.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.LkProperties(System.String,Linkar.Functions.LkPropertiesOptions,Linkar.Functions.DATAFORMATSCH_TYPE,System.String,System.Int32)">
+            <summary>
+            Returns the Schema properties list defined in Linkar Schemas or the file dictionaries, synchronously only.
+            </summary>
+            <param name="filename">File name to LkProperties</param>
+            <param name="lkPropertiesOptions">This object defines the different options in base of the asked Schema Type: LKSCHEMAS, SQLMODE o DICTIONARIES.</param>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML, JSON or TABLE.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.GetTable(System.String,System.String,System.String,System.String,Linkar.Functions.TableOptions,System.String,System.Int32)">
+            <summary>
+            Returns a query result in a table format, synchronously only.
+            </summary>
+            <param name="filename">File or table name defined in Linkar Schemas. Table notation is: MainTable[.MVTable[.SVTable]]</param>
+            <param name="selectClause">Statement fragment specifies the selection condition. For example WITH CUSTOMER = '1'</param>
+            <param name="dictClause">Space-delimited list of dictionaries to read. If this list is not set, all fields are returned. For example CUSTOMER DATE ITEM</param>
+            <param name="sortClause">Statement fragment specifies the selection order. If there is a selection rule Linkar will execute a SSELECT, otherwise Linkar will execute a SELECT. For example BY CUSTOMER</param>
+            <param name="tableOptions">Detailed options to be used, including: rowHeaders, rowProperties, onlyVisibe, usePropertyNames, repeatValues, applyConversion, applyFormat, calculated, pagination, regPage, numPage.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.Persistent.LinkarClient.ResetCommonBlocks(Linkar.Functions.DATAFORMAT_TYPE,System.Int32)">
+            <summary>
+            Resets the COMMON variables with the 100 most used files in a asynchronous way.
+            </summary>
+            <param name="outputFormat">Indicates in what format you want to receive the data resulting from the operation: MV, XML or JSON.</param>
+            <param name="receiveTimeout">Maximum time in seconds that the client will wait for a response from the server. Default = 0 to wait indefinitely.</param>
+            <returns>The results of the operation.</returns>
+        </member>
+    </members>
+</doc>

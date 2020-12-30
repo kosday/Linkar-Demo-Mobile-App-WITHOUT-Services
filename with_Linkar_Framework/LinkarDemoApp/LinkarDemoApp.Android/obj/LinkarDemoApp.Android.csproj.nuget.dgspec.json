@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/pedrom.jimenez/Projects/Linkar-Demo-Mobile-App-WITHOUT-Services/LinkarDemoApp/LinkarDemoApp.Android/LinkarDemoApp.Android.csproj": {}
+  },
+  "projects": {
+    "/Users/pedrom.jimenez/Projects/Linkar-Demo-Mobile-App-WITHOUT-Services/LinkarDemoApp/LinkarDemoApp.Android/LinkarDemoApp.Android.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/pedrom.jimenez/Projects/Linkar-Demo-Mobile-App-WITHOUT-Services/LinkarDemoApp/LinkarDemoApp.Android/LinkarDemoApp.Android.csproj",
+        "projectName": "LinkarDemoApp.Android",
+        "projectPath": "/Users/pedrom.jimenez/Projects/Linkar-Demo-Mobile-App-WITHOUT-Services/LinkarDemoApp/LinkarDemoApp.Android/LinkarDemoApp.Android.csproj",
+        "packagesPath": "/Users/pedrom.jimenez/.nuget/packages/",
+        "outputPath": "/Users/pedrom.jimenez/Projects/Linkar-Demo-Mobile-App-WITHOUT-Services/LinkarDemoApp/LinkarDemoApp.Android/obj/",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "/Users/pedrom.jimenez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "monoandroid90"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "monoandroid90": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "monoandroid90": {
+          "dependencies": {
+            "Xamarin.Android.Support.Design": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Android.Support.v4": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Android.Support.v7.AppCompat": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Android.Support.v7.CardView": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Android.Support.v7.MediaRouter": {
+              "target": "Package",
+              "version": "[28.0.0.3, )"
+            },
+            "Xamarin.Forms": {
+              "target": "Package",
+              "version": "[4.5.0.356, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

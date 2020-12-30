@@ -1,7 +1,8 @@
 # Linkar Demo Mobile App WITHOUT Services
 
-Calls are made using a DIRECT CONNECTION to the Linkar Server. The mobile device will connect directly with Linkar Server. No need to use a Web Service.
+We advise you to use the Linkar Framework for .NET, CORE, JAVA and C.
 
+Calls are made using a DIRECT CONNECTION to the Linkar Server. The mobile device will connect directly with Linkar Server. No need to use a Web Service.
 
 LinkarViewFiles (Shared Project)
 

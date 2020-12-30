@@ -1,0 +1,1390 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Linkar.Functions</name>
+    </assembly>
+    <members>
+        <member name="T:Linkar.Functions.MvOperations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkDCount(System.String,System.String)">
+            <summary>
+            Counts the delimited substrings inside a string.
+            </summary>
+            <param name="str">Source string of delimited fields.</param>
+            <param name="delimiter">The separator character(s) used to delimit fields in the string.</param>
+            <returns>The number of occurrences found.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkCount(System.String,System.String)">
+            <summary>
+            Counts the occurrences of a substring inside a string.
+            </summary>
+            <param name="str">Source string of delimited fields.</param>
+            <param name="delimiter">The separator character(s) used to delimit fields in the string.</param>
+            <returns>The number of occurrences found.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkExtract(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Extracts a field, value or subvalue from a dynamic array.
+            </summary>
+            <param name="str">The source string from which data is extracted.</param>
+            <param name="field">The position of the attribute to extract.</param>
+            <param name="value">The multivalue position to extract.</param>
+            <param name="subvalue">The subvalue position to extract.</param>
+            <returns>A new string with the extracted value.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkExtract(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Extracts a field, value or subvalue from a dynamic array.
+            </summary>
+            <param name="str">The source string from which data is extracted.</param>
+            <param name="lstDicts">Dictionaries list on which the field specified argument will be searched.</param>
+            <param name="field">The dictionary name of the attribute to extract.</param>
+            <param name="value">The multivalue position to extract.</param>
+            <param name="subvalue">The subvalue position to extract.</param>
+            <returns>A new string with the extracted value.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkChange(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Replaces the occurrences of a substring inside a string, by other substring.
+            </summary>
+            <param name="str">The string on which the value is going to change.</param>
+            <param name="strOld">The value to change. </param>
+            <param name="strNew">The new value.</param>
+            <param name="occurrence">The number of times it will change.</param>
+            <param name="start">The position from which you are going to start changing values.</param>
+            <returns>A new string with replaced text.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkReplace(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Replaces a field, value or subvalue from a dynamic array, returning the result.
+            </summary>
+            <param name="str">The string on which you are going to replace a value.</param>
+            <param name="newVal">New value that will be replaced in the indicated string.</param>
+            <param name="field">The position of the attribute where you want to replace.</param>
+            <param name="value">The multivalue position where you want to replace.</param>
+            <param name="subvalue">The subvalue position where you want to replace.</param>
+            <returns>A new string with the replaced value.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.LkReplace(System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Replaces a field, value or subvalue from a dynamic array, returning the result.
+            </summary>
+            <param name="str">The string on which you are going to replace a value.</param>
+            <param name="newVal">New value that will be replaced in the indicated string.</param>
+            <param name="lstDicts">Dictionaries list on which the field specified argument will be searched.</param>
+            <param name="field">The dictionary name of the attribute where you want to replace.</param>
+            <param name="value">The multivalue position where you want to replace.</param>
+            <param name="subvalue">The subvalue position where you want to replace.</param>
+            <returns>A new string with the replaced value.</returns>
+        </member>
+        <member name="M:Linkar.Functions.MvOperations.GetDictPos(System.String,System.String)">
+            <summary>
+            Auxiliary function to obtain the position (field value) of the dictionary
+            </summary>
+            <param name="lstdicts">Dictionaries list on which the field specified argument will be searched.</param>
+            <param name="field">The dictionary name of the attribute that you want to obtain the position</param>
+            <returns>The position (filed number) of the dictionary</returns>
+        </member>
+        <member name="T:Linkar.Functions.OperationArguments">
+            <summary>
+            Auxiliary static class with functions to obtain the 3 items of every LinkarSERVER operation.
+            These items are: CUSTOMVARS, OPTIONS and INPUTDATA.
+            Unit Separator character (31) is used as separator between these items.
+            CUSTOMVARS: String for database custom subroutines.
+            OPTIONS: The options of every operation.
+            INPUT: The necessary data for perform every operation.
+            CUSTOMVARS US_char OPTIONS US_char INPUT
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetReadArgs(System.String,System.String,System.String,Linkar.Functions.ReadOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Read operation.
+            </summary>
+            <param name="filename">File name to read.</param>
+            <param name="recordIds">A list of item IDs to read, separated by the Record Separator character (30). Use StringFunctions.ComposeRecordIds to compose this string.</param>
+            <param name="dictionaries">List of dictionaries to read, separated by space. If this list is not set, all fields are returned.</param>
+            <param name="readOptions">Object that defines the different reading options of the Function: Calculated, dictClause, conversion, formatSpec, originalRecords.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetUpdateArgs(System.String,System.String,Linkar.Functions.UpdateOptions,System.String)">
+            <summary>
+            Compose the 3 items ( CUSTOMVARS, OPTIONS and INPUTDATA) of the Update operation.
+            </summary>
+            <param name="filename">Name of the file being updated.</param>
+            <param name="records">Buffer of record data to update. Inside this string are the recordIds, the modified records, and the originalRecords. Use the StringFunctions.ComposeUpdateBuffer function to compose this string.</param>
+            <param name="updateOptions">Object with write options, including optimisticLockControl, readAfter, calculated, dictionaries, conversion, formatSpec, originalRecords.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetNewArgs(System.String,System.String,Linkar.Functions.NewOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the New operation.
+            </summary>
+            <param name="filename">Name of the file being updated.</param>
+            <param name="records">Buffer of records to write. Inside this string are the recordIds, and the records. Use StringFunctions.ComposeNewBuffer function to compose this string.</param>
+            <param name="newOptions">Object with write options for the new record(s), including recordIdType, readAfter, calculated, dictionaries, conversion, formatSpec, originalRecords.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetDeleteArgs(System.String,System.String,Linkar.Functions.DeleteOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Delete operation.
+            </summary>
+            <param name="filename">The file name where the records are going to be deleted. DICT in case of deleting a record that belongs to a dictionary.</param>
+            <param name="records">Buffer of records to be deleted. Use StringFunctions.ComposeDeleteBuffer function to compose this string.</param>
+            <param name="deleteOptions">Object with options to manage how records are deleted, including optimisticLockControl, recoverRecordIdType.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetSelectArgs(System.String,System.String,System.String,System.String,System.String,Linkar.Functions.SelectOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Select operation.
+            </summary>
+            <param name="filename">Name of file on which the operation is performed. For example LK.ORDERS</param>
+            <param name="selectClause">Statement fragment specifies the selection condition. For example WITH CUSTOMER = '1'</param>
+            <param name="sortClause">Statement fragment specifies the selection order. If there is a selection rule, Linkar will execute a SSELECT, otherwise Linkar will execute a SELECT. For example BY CUSTOMER</param>
+            <param name="dictClause">Space-delimited list of dictionaries to read. If this list is not set, all fields are returned. For example CUSTOMER DATE ITEM</param>
+            <param name="preSelectClause">An optional command that executes before the main Select</param>
+            <param name="selectOptions">Object with options to manage how records are selected, including calculated, dictionaries, conversion, formatSpec, originalRecords, onlyItemId, pagination, regPage, numPage.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetSubroutineArgs(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Subroutine operation.
+            </summary>
+            <param name="subroutineName">Name of BASIC subroutine to execute.</param>
+            <param name="argsNumber">Number of arguments</param>
+            <param name="arguments">The subroutine arguments list. Use StringFunctions.ComposeSubroutineArgs function to compose this string.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetConversionArgs(System.String,System.String,Linkar.Functions.CONVERSION_TYPE,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Conversion operation.
+            </summary>
+            <param name="expression">The data or expression to convert. May include MV marks (value delimiters), in which case the conversion will execute in each value obeying the original MV mark.</param>
+            <param name="code">The conversion code. Must obey the Database conversions specifications.</param>
+            <param name="conversionOptions">Indicates the conversion type, input or output: INPUT=ICONV(); OUTPUT=OCONV()</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetFormatArgs(System.String,System.String,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Format operation.
+            </summary>
+            <param name="expression">The data or expression to format. If multiple values are present, the operation will be performed individually on all values in the expression.</param>
+            <param name="formatSpec">Specified format</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetDictionariesArgs(System.String,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Dictionaries operation.
+            </summary>
+            <param name="filename">File name</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetExecuteArgs(System.String,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Execute operation.
+            </summary>
+            <param name="statement">The command you want to execute in the Database.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetVersionArgs">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the Version operation.
+            </summary>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetLkSchemasArgs(Linkar.Functions.LkSchemasOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the LkSchemas operation.
+            </summary>
+            <param name="lkSchemasOptions">This object defines the different options in base of the asked Schema Type: LKSCHEMAS, SQLMODE o DICTIONARIES.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetLkPropertiesArgs(System.String,Linkar.Functions.LkPropertiesOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the LkProperties operation.
+            </summary>
+            <param name="filename">File name to LkProperties</param>
+            <param name="lkPropertiesOptions">This object defines the different options in base of the asked Schema Type: LKSCHEMAS, SQLMODE o DICTIONARIES.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetGetTableArgs(System.String,System.String,System.String,System.String,Linkar.Functions.TableOptions,System.String)">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the GetTable operation.
+            </summary>
+            <param name="filename">File or table name defined in Linkar Schemas. Table notation is: MainTable[.MVTable[.SVTable]]</param>
+            <param name="selectClause">Statement fragment specifies the selection condition. For example WITH CUSTOMER = '1'</param>
+            <param name="dictClause">Space-delimited list of dictionaries to read. If this list is not set, all fields are returned. For example CUSTOMER DATE ITEM</param>
+            <param name="sortClause">Statement fragment specifies the selection order. If there is a selection rule Linkar will execute a SSELECT, otherwise Linkar will execute a SELECT. For example BY CUSTOMER</param>
+            <param name="tableOptions">Detailed options to be used, including: rowHeaders, rowProperties, onlyVisibe, usePropertyNames, repeatValues, applyConversion, applyFormat, calculated, pagination, regPage, numPage.</param>
+            <param name="customVars">Free text sent to the database allows management of additional behaviours in SUB.LK.MAIN.CONTROL.CUSTOM, which is called when this parameter is set.</param>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="M:Linkar.Functions.OperationArguments.GetResetCommonBlocksArgs">
+            <summary>
+            Compose the 3 items (CUSTOMVARS, OPTIONS and INPUTDATA) of the ResetCommonBlocks operation.
+            </summary>
+            <returns>A string ready to be used in Linkar.ExecuteDirectOperation and Linkar.ExecutePermanentOperation.</returns>
+        </member>
+        <member name="T:Linkar.Functions.NamespaceDoc">
+            <summary>
+            Namespace Linkar.Functions library
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.CommonOptions">
+            <summary>
+            Auxiliary class with the common options for ReadOptions, SelectOptions and ReadAfterCommonOptions classes
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.CommonOptions.Calculated">
+            <summary>
+            Returns the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.CommonOptions.Conversion">
+            <summary>
+            Executes the defined conversions in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.CommonOptions.FormatSpec">
+            <summary>
+            Executes the defined formats in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.CommonOptions.OriginalRecords">
+            <summary>
+            Returns a copy of the records in MV format.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.CommonOptions.#ctor">
+            <summary>
+            Initializes a new instance of the CommonOptions class.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.CommonOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the CommonOptions class.
+            </summary>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.CommonOptions.ToString">
+            <summary>
+            Composes the CommonOptions options string for use with ReadOptions, SelectOptions and ReadAfterCommonOptions classes.
+            </summary>
+            <returns>The string ready to be used by ReadOptions, SelectOptions and ReadAfterCommonOptions classes</returns>
+        </member>
+        <member name="T:Linkar.Functions.ReadAfterCommonOptions">
+            <summary>
+            Auxiliary class with the ReadAfters options for UpdateOptions and NewOptions classes
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.ReadAfterCommonOptions.ReadAfter">
+            <summary>
+            Reads the record again and returns it after the update or new. Calculated, dictionaries, conversion, formatSpec and originalRecords will only make effect if this option is true.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.ReadAfterCommonOptions.#ctor">
+            <summary>
+            Initializes a new instance of the ReadAfterCommonOptions class.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.ReadAfterCommonOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the ReadAfterCommonOptions class.
+            </summary>
+            <param name="readAfter">Reads the record again and returns it after the update or new. Calculated, dictionaries, conversion, formatSpec and originalRecords will only be applied if this option is true.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.ReadAfterCommonOptions.ToString">
+            <summary>
+            Composes the ReadAfterCommonOptions options string for use with UpdateOptions and NewOptions classes.
+            </summary>
+            <returns>The string ready to be used by UpdateOptions and NewOptions classes</returns>
+        </member>
+        <member name="T:Linkar.Functions.ReadOptions">
+            <summary>
+            Object that works as an argument in Read function and defines the function options.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.ReadOptions.Calculated">
+            <summary>
+            Returns the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.ReadOptions.Conversion">
+            <summary>
+            Executes the defined conversions in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.ReadOptions.FormatSpec">
+            <summary>
+            Executes the defined formats in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.ReadOptions.OriginalRecords">
+            <summary>
+            Returns a copy of the records in MV format.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.ReadOptions.#ctor">
+            <summary>
+            Initializes a new instance of the ReadOptions class
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.ReadOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the ReadOptions class
+            </summary>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.ReadOptions.ToString">
+            <summary>
+            Composes the Read options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.UpdateOptions">
+            <summary>
+            Object that works as an argument in Update function and defines the function options.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.OptimisticLock">
+            <summary>
+            Checks out if the file has not been modified by other user.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.ReadAfter">
+            <summary>
+            Reads the record again and returns it after the update. Calculated, dictionaries, conversion, formatSpec and originalRecords will only make effect if this option is true.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.Calculated">
+            <summary>
+            Returns the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.Conversion">
+            <summary>
+            Executes the defined conversions in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.FormatSpec">
+            <summary>
+            Executes the defined formats in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.UpdateOptions.OriginalRecords">
+            <summary>
+            Returns a copy of the records in MV format.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.UpdateOptions.#ctor">
+            <summary>
+            Initializes a new instance of the UpdateOptions class.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.UpdateOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the UpdateOptions class.
+            </summary>
+            <param name="optimisticLockControl">if "true", the Update function will check out if the file has not been modified by other user.</param>
+            <param name="readAfter">Reads the record again and returns it after the update. Calculated, dictionaries, conversion, formatSpec and originalRecords will only be applied if this option is true.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.UpdateOptions.ToString">
+            <summary>
+            Composes the Update options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.NewOptions">
+            <summary>
+            Object that works as an argument in New function and defines the function options.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.ActiveTypeLinkar">
+            <summary>
+            Indicates that the Record Id Type Linkar is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.ActiveTypeRandom">
+            <summary>
+            Indicates that the Record Id Type Random is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.ActiveTypeCustom">
+            <summary>
+            Indicates that the Record Id Type Custom is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Prefix">
+            <summary>
+            A prefix to the code
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Separator">
+            <summary>
+            The separator between the prefix and the code. The allowed separators list is: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.FormatSpec_RecordId">
+            <summary>
+            The code format, under the Database syntax.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Numeric">
+            <summary>
+            Indicates if the code must be numeric.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Length">
+            <summary>
+            Length of the code to create. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.ReadAfter">
+            <summary>
+            Reads the record again and returns it after the update. Calculated, dictionaries, conversion, formatSpec and originalRecords will only make effect if this option is true.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Calculated">
+            <summary>
+            Returns the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.Conversion">
+            <summary>
+            Executes the defined conversions in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.FormatSpec">
+            <summary>
+            Executes the defined formats in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.NewOptions.OriginalRecords">
+            <summary>
+            Returns a copy of the records in MV format.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.NewOptions.#ctor">
+            <summary>
+            Initializes a new instance of the NewOptions class.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.NewOptions.#ctor(Linkar.Functions.RecordIdType,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the NewOptions class.
+            </summary>
+            <param name="recordIdType">Specifies the technique for generating item IDs. Mandatory if no registration codes are indicated in the New functions.</param>
+            <param name="readAfter">Reads the record again and returns it after the update. Calculated, dictionaries, conversion, formatSpec and originalRecords will only be applied if this option is true.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.NewOptions.ToString">
+            <summary>
+            Composes the New options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.RecordIdType">
+            <summary>
+            Object that works as an argument in NewOptions function and defines the technique for generating item IDs.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.ActiveTypeLinkar">
+            <summary>
+            Indicates that the Record Id Type Linkar is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.ActiveTypeRandom">
+            <summary>
+            Indicates that the Record Id Type Random is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.ActiveTypeCustom">
+            <summary>
+            Indicates that the Record Id Type Custom is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.Prefix">
+            <summary>
+            A prefix to the code
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.Separator">
+            <summary>
+            The separator between the prefix and the code. The allowed separators list is: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.FormatSpec">
+            <summary>
+            The code format, under the Database syntax.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.Numeric">
+            <summary>
+            Indicates if the code must be numeric.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecordIdType.Length">
+            <summary>
+            Length of the code to create. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.RecordIdType.#ctor">
+            <summary>
+            No item ID generation technique will be used. the item IDs must be supplied in the New operations.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.RecordIdType.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor accepts options for generating Linkar item IDs.
+            </summary>
+            <param name="prefix">Adding a prefix to the item ID.</param>
+            <param name="separator">The separator between the prefix and the ID. Valid delimiters: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~</param>
+            <param name="formatSpec">Conversion format for the item ID. Use database-specific syntax.</param>
+        </member>
+        <member name="M:Linkar.Functions.RecordIdType.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Constructor accepts options for generating Random item IDs.
+            </summary>
+            <param name="numeric">Indicates if the item ID must be numeric.</param>
+            <param name="length">Length of the item ID to create. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.RecordIdType.#ctor(System.Boolean)">
+            <summary>
+            Constructor accepts options for generating Custom item IDs.
+            </summary>
+            <param name="custom">If true, item IDs are generated by SUB.LK.MAIN.RECOVERRECORDID.CUSTOM. If false, no ID generation technique will be used - IDs must be supplied in the New operations.</param>
+        </member>
+        <member name="M:Linkar.Functions.RecordIdType.ToString">
+            <summary>
+            Composes the RecordIdType options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.DeleteOptions">
+            <summary>
+            Object that works as an argument in Delete function and defines the function options.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.DeleteOptions.OptimisticLock">
+            <summary>
+            In the execution of the Delete function, before updating the record, checks out if the record has not been modified by other user.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.DeleteOptions.ActiveTypeLinkar">
+            <summary>
+            Indicates that the Recover Id Type Linkar is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.DeleteOptions.ActiveTypeCustom">
+            <summary>
+            Indicates that the Recover Id Type Custom is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.DeleteOptions.Prefix">
+            <summary>
+            A prefix to the code.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.DeleteOptions.Separator">
+            <summary>
+            The separator between the prefix and the code. The allowed separators list is: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.DeleteOptions.#ctor">
+            <summary>
+            Initializes a new instance of the DeleteOptions class
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.DeleteOptions.#ctor(System.Boolean,Linkar.Functions.RecoverIdType)">
+            <summary>
+            Initializes a new instance of the DeleteOptions class
+            </summary>
+            <param name="optimisticLockControl">In the execution of the Delete function, before updating the record, checks out if the record has not been modified by other user.</param>
+            <param name="recoverIdType">Specifies the recovery technique for deleted item IDs.</param>
+        </member>
+        <member name="M:Linkar.Functions.DeleteOptions.ToString">
+            <summary>
+            Composes the Delete options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.RecoverIdType">
+            <summary>
+            Object that works as an argument in DeleteOptions function and defines the technique for recovering deleted item IDs.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecoverIdType.ActiveTypeLinkar">
+            <summary>
+            Indicates that the Recover Id Type Linkar is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecoverIdType.ActiveTypeCustom">
+            <summary>
+            Indicates that the Recover Id Type Custom is enabled.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecoverIdType.Prefix">
+            <summary>
+            A prefix to the code.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.RecoverIdType.Separator">
+            <summary>
+            The separator between the prefix and the code. The allowed separators list is: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.RecoverIdType.#ctor">
+            <summary>
+            No id recovery technique will be used.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.RecoverIdType.#ctor(System.String,System.String)">
+            <summary>
+            Use this constructor for recovering items ids that used Linkar RecordIdType.
+            </summary>
+            <param name="prefix">Adding a prefix to the item ID.</param>
+            <param name="separator">The separator between the prefix and the ID. Valid delimiters: ! " # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ~</param>
+        </member>
+        <member name="M:Linkar.Functions.RecoverIdType.#ctor(System.Boolean)">
+            <summary>
+            Use this constructor to recovering items ids that used Custom RecordIdType
+            </summary>
+            <param name="custom">If true, the recovery of deleted item IDs is handled in SUB.LK.MAIN.RECOVERRECORDID.CUSTOM. If false, no technique to recover deleted item IDs will be used.</param>
+        </member>
+        <member name="M:Linkar.Functions.RecoverIdType.ToString">
+            <summary>
+            Composes the RecoverIdType options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.SelectOptions">
+            <summary>
+            Object that works as an argument in Select function and defines the function options.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.OnlyRecordId">
+            <summary>
+            Returns just the selected records codes.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.Pagination">
+            <summary>
+            Indicates if pagination is being used or not.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.Pagination_RegPage">
+            <summary>
+            In case of pagination indicates the number of records by page. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.Pagination_NumPage">
+            <summary>
+            In case of pagination it indicates the page number to obtain. Must be greater than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.Calculated">
+            <summary>
+            Returns the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.Conversion">
+            <summary>
+            Executes the defined conversions in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.FormatSpec">
+            <summary>
+            Executes the defined formats in the dictionaries before returning.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.SelectOptions.OriginalRecords">
+            <summary>
+            Returns a copy of the records in MV format.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.SelectOptions.#ctor">
+            <summary>
+            Initializes a new instance of the SelectOptions class.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.SelectOptions.#ctor(System.Boolean,System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the SelectOptions class.
+            </summary>
+            <param name="onlyRecordId">Returns just the ID(s) of selected record(s).</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="conversion">Execute the defined conversions in the dictionaries before returning.</param>
+            <param name="formatSpec">Execute the defined formats in the dictionaries before returning.</param>
+            <param name="originalRecords">Return a copy of the records in MV format.</param>
+        </member>
+        <member name="M:Linkar.Functions.SelectOptions.ToString">
+            <summary>
+            Composes the Select options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.LkSchemasOptions">
+            <summary>
+            Contains the options to obtain different types of schemas with the LkSchemas function.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.SchemaType">
+            <summary>
+            Indicates the type of LkSchemas used
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.RowHeaders">
+            <summary>
+            Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.SqlMode">
+            <summary>
+            SQLMODE type schemas
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.RowProperties">
+            <summary>
+            First row contains property names.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.OnlyVisibles">
+            <summary>
+            Use only Visible Schemas and Properties.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.Pagination">
+            <summary>
+            Indicates if pagination is being used or not.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.Pagination_RegPage">
+            <summary>
+            In case of pagination indicates the number of records by page. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkSchemasOptions.Pagination_NumPage">
+            <summary>
+            In case of pagination it indicates the page number to obtain. Must be greater than 0.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.LkSchemasOptions.#ctor">
+            <summary>
+            Initializes a new instance of the LkSchemasOptions class.
+            The object is created with the default values for LKSCHEMAS type schemas.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.LkSchemasOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkSchemasOptions class.
+            Constructor of object used to obtain LKSCHEMAS type schemas.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="rowProperties">First row contains property names.</param>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkSchemasOptions.#ctor(System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkSchemasOptions class.
+            Constructor of object used to obtain SQLMODE type schemas.Creation options are allowed for SQLMODE type schemas.
+            </summary>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkSchemasOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkSchemasOptions class.
+            Constructor of object used to obtain DICTIONARIES type schemas.Creation options are allowed for DICTIONARIES type schemas.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkSchemasOptions.ToString">
+            <summary>
+            Composes the LkSchemas options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.LkPropertiesOptions">
+            <summary>
+            Contains the options to obtain the list of Properties of the different types of schemas with the LkProperties function.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.SchemaType">
+            <summary>
+            Indicates the type of LkSchemas used
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.RowHeaders">
+            <summary>
+            Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.SqlMode">
+            <summary>
+            SQLMODE type schemas
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.RowProperties">
+            <summary>
+            First row contains property names.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.OnlyVisibles">
+            <summary>
+            Use only Visible Schemas and Properties.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.UsePropertiesNames">
+            <summary>
+            Use Properties and Table names.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.Pagination">
+            <summary>
+            Indicates if pagination is being used or not.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.Pagination_RegPage">
+            <summary>
+            In case of pagination indicates the number of records by page. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.LkPropertiesOptions.Pagination_NumPage">
+            <summary>
+            In case of pagination it indicates the page number to obtain. Must be greater than 0.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.LkPropertiesOptions.#ctor">
+            <summary>
+            Initializes a new instance of the LkPropertiesOptions class.
+            The object is created with the default values for list of Schema Properties of LKSCHEMAS type.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.LkPropertiesOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkPropertiesOptions class.
+            Constructor of object used to obtain a list of Properties of the LKSCHEMAS schema type.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="rowProperties">First row contains property names.</param>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="usePropertyNames">Use Properties and Table names.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkPropertiesOptions.#ctor(System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkPropertiesOptions class.
+            Constructor of object used to obtain a list of Properties of the SQLMODE schema type.
+            </summary>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkPropertiesOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the LkPropertiesOptions class.
+            Constructor of object used to obtain a list of Properties of the DICTIONARIES schema type.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.LkPropertiesOptions.ToString">
+            <summary>
+            Composes the LkProperties options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.TableOptions">
+            <summary>
+            Detailed options to be used in GetTable and related functions.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.SchemaType">
+            <summary>
+            Indicates the type of LkSchemas used
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.RowHeaders">
+            <summary>
+            Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.SqlMode">
+            <summary>
+            SQLMODE type schemas
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.RowProperties">
+            <summary>
+            First row contains property names.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.OnlyVisibles">
+            <summary>
+            Use only Visible Schemas and Properties.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.UsePropertiesNames">
+            <summary>
+            Use Properties and Table names.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.RepeatValues">
+            <summary>
+            Repeat common atributes in MV and SV groups.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.ApplyConversion">
+            <summary>
+            Execute Conversions: With Dictionaries, conversion defined in the dictionary. With Schemas conversions defined in Linkar Schemas.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.ApplyFormat">
+            <summary>
+            Execute Formats. With Dictionaries, formats defined in the dictionary. With Schemas formats defined in Linkar Schemas.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.Calculated">
+            <summary>
+            Return the resulting values from the calculated dictionaries.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.Pagination">
+            <summary>
+            Indicates if pagination is being used or not.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.Pagination_RegPage">
+            <summary>
+            In case of pagination indicates the number of records by page. It must be bigger than 0.
+            </summary>
+        </member>
+        <member name="P:Linkar.Functions.TableOptions.Pagination_NumPage">
+            <summary>
+            In case of pagination it indicates the page number to obtain. Must be greater than 0.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.#ctor">
+            <summary>
+            Initializes a new instance of the TableOptions class.
+            The object is created with the default values for queries with LKSCHEMAS type schemas.
+            </summary>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the TableOptions class.
+            Constructor of object used to obtain queries of the LKSCHEMAS schema type.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="rowProperties">First row contains property names.</param>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="usePropertyNames">Use Properties and Table names.</param>
+            <param name="repeatValues">Repeat common atributes in MV and SV groups.</param>
+            <param name="applyConversion">Execute Conversions: With Dictionaries, conversion defined in the dictionary. With Schemas conversions defined in Linkar Schemas.</param>
+            <param name="applyFormat">Execute Formats. With Dictionaries, formats defined in the dictionary. With Schemas formats defined in Linkar Schemas.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the TableOptions class.
+            Constructor of object used to perform queries of the SQLMODE type schemas.
+            </summary>
+            <param name="onlyVisibles">Use only Visible Schemas and Properties.</param>
+            <param name="applyConversion">Execute Conversions: With Dictionaries, conversion defined in the dictionary. With Schemas conversions defined in Linkar Schemas.</param>
+            <param name="applyFormat">Execute Formats. With Dictionaries, formats defined in the dictionary. With Schemas formats defined in Linkar Schemas.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the TableOptions class.
+            Constructor of object used to perform queries of the DICTIONARIES type schemas.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="repeatValues">Repeat common atributes in MV and SV groups.</param>
+            <param name="applyConversion">Execute Conversions: With Dictionaries, conversion defined in the dictionary. With Schemas conversions defined in Linkar Schemas.</param>
+            <param name="applyFormat">Execute Formats. With Dictionaries, formats defined in the dictionary. With Schemas formats defined in Linkar Schemas.</param>
+            <param name="calculated">Return the resulting values from the calculated dictionaries.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.#ctor(Linkar.Functions.RowHeaders.TYPE,System.Boolean,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the TableOptions class.
+            Constructor of object used to perform queries without schema information.
+            </summary>
+            <param name="rowHeaders">Include headings in first row MAINLABEL (main headings), SHORTLABEL (short label headings), and NONE (without headings).</param>
+            <param name="repeatValues">Repeat common atributes in MV and SV groups.</param>
+            <param name="pagination">True if pagination is being used.</param>
+            <param name="regPage">For use with pagination, indicates the number of records by page. Must be greater than 0.</param>
+            <param name="numPage">For use with pagination, indicates the page number to obtain. Must be greater than 0.</param>
+        </member>
+        <member name="M:Linkar.Functions.TableOptions.ToString">
+            <summary>
+            Composes the GetTable options string for processing through LinkarSERVER to the database.
+            </summary>
+            <returns>The string ready to be used by LinkarSERVER.</returns>
+        </member>
+        <member name="T:Linkar.Functions.OPERATION_CODE">
+            <summary>
+            The codes of each operation
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.DATAFORMAT_TYPE">
+            <summary>
+            Indicates in what format you want to receive the data resulting from the operation.
+            Output format type for all operations, except Read, New, Update, Select, LkSchemas, LkProperties and GetTable
+            Also The input format type for New, Update and Delete operations.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMAT_TYPE.MV">
+            <summary>
+            Show the results of the operation in MV format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMAT_TYPE.XML">
+            <summary>
+            Show the results of the operation in XML format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMAT_TYPE.JSON">
+            <summary>
+            Show the results of the operation in JSON format.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.DATAFORMATCRU_TYPE">
+            <summary>
+            Indicates in what format you want to receive the data resulting from the operation.
+            Output format type for Read, New, Update and Select operations.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.MV">
+            <summary>
+            Show the results of the operation in MV format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.XML">
+            <summary>
+            Show the results of the operation in XML format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.JSON">
+            <summary>
+            Show the results of the operation in JSON format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.XML_DICT">
+            <summary>
+            Show the results of the operation in XML_DICT format, using the dictionaries.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.XML_SCH">
+            <summary>
+            Show the results of the operation in XML_SCH format, using the schema properties.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.JSON_DICT">
+            <summary>
+            Show the results of the operation in JSON_DICT format, using the dictionaries.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATCRU_TYPE.JSON_SCH">
+            <summary>
+            Show the results of the operation in JSON_SCH format, using the schema properties.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.DATAFORMATSCH_TYPE">
+            <summary>
+            Specify the output formats of LkSchemas and LkProperties operations (For other operations, <see cref="T:Linkar.Functions.DATAFORMAT_TYPE"/> and <see cref="T:Linkar.Functions.DATAFORMATCRU_TYPE"/>).
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATSCH_TYPE.MV">
+            <summary>
+            Show the results of the operation in MV format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATSCH_TYPE.XML">
+            <summary>
+            Show the results of the operation in XML format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATSCH_TYPE.JSON">
+            <summary>
+            Show the results of the operation in JSON format.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DATAFORMATSCH_TYPE.TABLE">
+            <summary>
+            Show the results of the operation in TABLE format.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.CONVERSION_TYPE">
+            <summary>
+            The conversion type for Conversion functions.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.CONVERSION_TYPE.INPUT">
+            <summary>
+            Perform ICONV type conversions.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.CONVERSION_TYPE.OUTPUT">
+            <summary>
+            Perform OCONV type conversions.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.SchemaType">
+            <summary>
+            The schemas type for LkSchemas, LkProperties and LkGetTable functions
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.SchemaType.TYPE">
+            <summary>
+            Schema types
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.RowHeaders">
+            <summary>
+            Indicates options to include headers in the first row or not <see cref="T:Linkar.Functions.LkSchemasOptions"/> <see cref="T:Linkar.Functions.LkPropertiesOptions"/> and <see cref="T:Linkar.Functions.TableOptions"/>
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.RowHeaders.TYPE">
+            <summary>
+            RowHeaders types
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.RowHeaders.TYPE.MAINLABEL">
+            <summary>
+            Main headings.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.RowHeaders.TYPE.SHORTLABEL">
+            <summary>
+            Short label headings.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.RowHeaders.TYPE.NONE">
+            <summary>
+            Without headings.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.ASCII_Chars">
+            <summary>
+            Some ASCII characters used by Linkar.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.TAB">
+            <summary>
+            ASCII character horizontal tab.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.TAB_chr">
+            <summary>
+            ASCII character horizontal tab.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.TAB_str">
+            <summary>
+            ASCII character horizontal tab.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.LF">
+            <summary>
+            ASCII character line break.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.LF_chr">
+            <summary>
+            ASCII character line break.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.LF_str">
+            <summary>
+            ASCII character line break.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.CR">
+            <summary>
+            ASCII character carriage return.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.CR_chr">
+            <summary>
+            ASCII character carriage return.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.CR_str">
+            <summary>
+            ASCII character carriage return.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.US">
+            <summary>
+            ASCII character used as separator of the operation arguments <see cref="T:Linkar.Functions.OperationArguments"/>.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.US_chr">
+            <summary>
+            ASCII character used as separator of the operation arguments <see cref="T:Linkar.Functions.OperationArguments"/>.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.US_str">
+            <summary>
+            ASCII character used as separator of the operation arguments <see cref="T:Linkar.Functions.OperationArguments"/>.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.DC4">
+            <summary>
+            ASCII character used as separator of the arguments of a subroutine.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.DC4_chr">
+            <summary>
+            ASCII character used as separator of the arguments of a subroutine.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.DC4_str">
+            <summary>
+            ASCII character used as separator of the arguments of a subroutine.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.FS">
+            <summary>
+            When the responses of the operations are of MV type, this character is used to separate the header (the ThisList property in LkData) from the data.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.FS_chr">
+            <summary>
+            When the responses of the operations are of MV type, this character is used to separate the header (the ThisList property in LkData) from the data.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.FS_str">
+            <summary>
+            When the responses of the operations are of MV type, this character is used to separate the header (the ThisList property in LkData) from the data.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.RS">
+            <summary>
+            ASCII character used by Linkar as separator of items in lists. For example, list of records.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.RS_chr">
+            <summary>
+            ASCII character used by Linkar as separator of items in lists. For example, list of records.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.ASCII_Chars.RS_str">
+            <summary>
+            ASCII character used by Linkar as separator of items in lists. For example, list of records.
+            </summary>
+        </member>
+        <member name="T:Linkar.Functions.DBMV_Mark">
+            <summary>
+            Special ASCII characters used by Multivalued Databases.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.IM">
+            <summary>
+            Character ASCII 255. IM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.AM">
+            <summary>
+            Character ASCII 254. AM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.VM">
+            <summary>
+            Character ASCII 253. VM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.SM">
+            <summary>
+            Character ASCII 252. SM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.TM">
+            <summary>
+            Character ASCII 251. TM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.IM_str">
+            <summary>
+            Character ASCII 255. IM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.AM_str">
+            <summary>
+            Character ASCII 254. AM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.VM_str">
+            <summary>
+            Character ASCII 253. VM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.SM_str">
+            <summary>
+            Character ASCII 252. SM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Functions.DBMV_Mark.TM_str">
+            <summary>
+            Character ASCII 251. TM Multi-value mark.
+            </summary>
+        </member>
+    </members>
+</doc>

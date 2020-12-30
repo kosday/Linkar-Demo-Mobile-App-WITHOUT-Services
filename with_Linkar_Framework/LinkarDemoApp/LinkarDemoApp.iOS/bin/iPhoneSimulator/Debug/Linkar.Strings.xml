@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Linkar.Strings</name>
+    </assembly>
+    <members>
+        <member name="T:Linkar.Strings.NamespaceDoc">
+            <summary>
+            Namespace Linkar.Strings library
+            </summary>
+        </member>
+        <member name="T:Linkar.Strings.StringFunctions">
+            <summary>
+            The tag names that may appear in the result string from executing an operation.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.TOTAL_RECORDS_KEY">
+            <summary>
+            The tag value for "TOTAL_RECORDS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RECORD_IDS_KEY">
+            <summary>
+            The tag value for "RECORD_IDS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RECORDS_KEY">
+            <summary>
+            The tag value for "RECORDS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.CALCULATED_KEY">
+            <summary>
+            The tag value for "CALCULATED_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RECORD_DICTS_KEY">
+            <summary>
+            The tag value for "RECORD_DICTS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RECORD_ID_DICTS_KEY">
+            <summary>
+            The tag value for "RECORD_ID_DICTS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.CALCULATED_DICTS_KEY">
+            <summary>
+            The tag value for "CALCULATED_DICTS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.ARGUMENTS_KEY">
+            <summary>
+            The tag value for "ARGUMENTS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.ORIGINAL_RECORDS_KEY">
+            <summary>
+            The tag value for "ORIGINAL_RECORDS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.FORMAT_KEY">
+            <summary>
+            The tag value for "FORMAT_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.CONVERSION_KEY">
+            <summary>
+            The tag value for "CONVERSION_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.CAPTURING_KEY">
+            <summary>
+            The tag value for "CAPTURING_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RETURNING_KEY">
+            <summary>
+            The tag value for "RETURNING_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.ROWHEADERS_KEY">
+            <summary>
+            The tag value for "ROWHEADERS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.ROWPROPERTIES_KEY">
+            <summary>
+            The tag value for "ROWPROPERTIES_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.ERRORS_KEY">
+            <summary>
+            The tag value for "ERRORS_KEY" in Database operation responses of MV type
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.DC4">
+            <summary>
+            ASCII character used as separator of the arguments of a subroutine.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.DC4_str">
+            <summary>
+            ASCII character used as separator of the arguments of a subroutine.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.FS">
+            <summary>
+            When the responses of the operations are of MV type, this character is used to separate the header (the ThisList property in LkData) from the data.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.FS_str">
+            <summary>
+            When the responses of the operations are of MV type, this character is used to separate the header (the ThisList property in LkData) from the data.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RS">
+            <summary>
+            ASCII character used by Linkar as separator of items in lists. For example, list of records.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.RS_str">
+            <summary>
+            ASCII character used by Linkar as separator of items in lists. For example, list of records.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.AM">
+            <summary>
+            Character ASCII 254. AM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.AM_str">
+            <summary>
+            Character ASCII 254. AM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.VM">
+            <summary>
+            Character ASCII 253. VM Multi-value mark.
+            </summary>
+        </member>
+        <member name="F:Linkar.Strings.StringFunctions.VM_str">
+            <summary>
+            Character ASCII 253. VM Multi-value mark.
+            </summary>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractTotalRecords(System.String)">
+            <summary>
+            Looks for the TOTAL_RECORDS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of TOTAL_RECORDS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecordIds(System.String)">
+            <summary>
+            Looks for the RECORD_IDS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RECORD_IDS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecords(System.String)">
+            <summary>
+            Looks for the RECORDS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RECORDS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractErrors(System.String)">
+            <summary>
+            Looks for the ERRORS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of ERRORS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.FormatError(System.String)">
+            <summary>
+            This function formats the message error by split into Error Code and Error Message
+            </summary>
+            <param name="error"></param>
+            <returns>The error formated</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecordsCalculated(System.String)">
+            <summary>
+            Looks for the CALCULATED_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of CALCULATED_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecordsDicts(System.String)">
+            <summary>
+            Looks for the RECORD_DICTS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RECORD_DICTS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecordsCalculatedDicts(System.String)">
+            <summary>
+            Looks for the CALCULATED_DICTS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of CALCULATED_DICTS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRecordsIdDicts(System.String)">
+            <summary>
+            Looks for the RECORD_ID_DICTS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RECORD_ID_DICTS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractOriginalRecords(System.String)">
+            <summary>
+            Looks for the ORIGINAL_RECORDS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of ORIGINAL_RECORDS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractDictionaries(System.String)">
+            <summary>
+            Looks for the RECORDS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RECORDS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractConversion(System.String)">
+            <summary>
+            Looks for the CONVERSION_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of CONVERSION_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractFormat(System.String)">
+            <summary>
+            Looks for the FORMAT_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of FORMAT_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractCapturing(System.String)">
+            <summary>
+            Looks for the CAPTURING_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of CAPTURING_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractReturning(System.String)">
+            <summary>
+            Looks for the RETURNING_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of RETURNING_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractSubroutineArgs(System.String)">
+            <summary>
+            Looks for the ARGUMENTS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of ARGUMENTS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRowProperties(System.String)">
+            <summary>
+            Looks for the ROWPROPERTIES_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of ROWPROPERTIES_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ExtractRowHeaders(System.String)">
+            <summary>
+            Looks for the ROWHEADERS_KEY tag inside "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <returns>The value of ROWHEADERS_KEY tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.GetData(System.String,System.String,System.Char,System.Char)">
+            <summary>
+            Looks for the "tag" inside the "lkString", and extracts its value.
+            </summary>
+            <param name="lkString">A string obtained as a result of executing an operation.</param>
+            <param name="tag">The tag to looking for</param>
+            <param name="delimiter">Delimiter char of every main items in "lkString".</param>
+            <param name="delimiterThisList">Delimiter char inside the first item of "lkString". The first item of "lkString" is always the header tags (THISLIST).</param>
+            <returns>The value of tag.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.SplitArray(System.String,System.Char)">
+            <summary>
+            Auxiliary function to extract arrays inside a tag value.
+            </summary>
+            <param name="valueTag">The string to be splitted.</param>
+            <param name="delimiter">The char to use for split.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeRecordIds(System.String[])">
+            <summary>
+            Composes the final string of various "recordsIds". Used by CRUD Operations.
+            </summary>
+            <param name="recordIds">Array with the "recordIds" to be joined</param>
+            <returns>The final string of "recordIds" to be used by CRUD Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeRecords(System.String[])">
+            <summary>
+            Composes the final string of various "records". Used by CRUD Operations.
+            </summary>
+            <param name="records">Array with the "records" to be joined.</param>
+            <returns>The final string of "records" to be used by CRUD Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeOriginalRecords(System.String[])">
+            <summary>
+            Composes the final string of various "originalRecords". Used by CRUD Operations.
+            </summary>
+            <param name="originalRecords">Array with the "originalRecords" to be joined.</param>
+            <returns>The final string of "originalRecords" to be used by CRUD Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeDictionaries(System.String[])">
+            <summary>        /// Composes the final string of various "dictClauses". Used by Read and Select Operations.
+            </summary>
+            <param name="dictionaries">Array with the "dictionaries" to be joined.</param>
+            <returns>The final string of "dictionaries" to be used by Read and Select Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeExpressions(System.String[])">
+            <summary>
+            Composes the final string of various "expressions". Used by Format and Conversion Operations.
+            </summary>
+            <param name="expressions">Array with the "expressions" to be joined.</param>
+            <returns>The final string of "expressions" to be used in Format and Conversion Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeSubroutineArgs(System.String[])">
+            <summary>
+            Composes the final string of various "arguments" of a subroutine.
+            </summary>
+            <param name="args">Array with the "arguments" to be joined.</param>
+            <returns>The final string to be used in Subroutine Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.JoinArray(System.String[],System.String)">
+            <summary>
+            Auxiliary function to compose the final string of multiple items using "delimiter" as separation char.
+            </summary>
+            <param name="items">The "items" to be joined.</param>
+            <param name="delimiter">The "delimiter" char between the "items".</param>
+            <returns>The final string with the different items joined by "delimiter" char.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeUpdateBuffer(System.String,System.String,System.String)">
+            <summary>
+            Compose the fully buffer of the Update Operations with the block of "recordIds", "records" and "originalRecords".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="records">Block of "records". You can obtain this block with ComposeRecords function.</param>
+            <param name="originalRecords">Block of "originalRecords". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by Update Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeUpdateBuffer(System.String[],System.String[],System.String[])">
+            <summary>
+            Compose the fully buffer of the Update Operations with the block of "recordIds", "records" and "originalRecords".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="records">Block of "records". You can obtain this block with ComposeRecords function.</param>
+            <param name="originalRecords">Block of "originalRecords". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by Update Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeNewBuffer(System.String,System.String)">
+            <summary>
+            Compose the fully buffer of the New Operations with the block of "recordIds" and "records".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="records">Block of "records". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by New Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeNewBuffer(System.String[],System.String[])">
+            <summary>
+            Compose the fully buffer of the New Operations with the block of "recordIds" and "records".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="records">Block of "records". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by New Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeDeleteBuffer(System.String,System.String)">
+            <summary>
+            Compose the fully buffer of the Delete Operations with the block of "recordIds" and "originalRecords".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="originalRecords">Block of "originalRecords". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by Delete Operations.</returns>
+        </member>
+        <member name="M:Linkar.Strings.StringFunctions.ComposeDeleteBuffer(System.String[],System.String[])">
+            <summary>
+            Compose the fully buffer of the Delete Operations with the block of "recordIds" and "originalRecords".
+            </summary>
+            <param name="recordIds">Block of "recordIds". You can obtain this block with ComposeRecordIds function.</param>
+            <param name="originalRecords">Block of "originalRecords". You can obtain this block with ComposeRecords function.</param>
+            <returns>The buffer to be used by Delete Operations.</returns>
+        </member>
+    </members>
+</doc>

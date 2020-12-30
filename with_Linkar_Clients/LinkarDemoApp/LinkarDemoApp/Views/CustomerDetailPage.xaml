@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LinkarDemoApp.Views.CustomerDetailPage"
+             Title="{Binding Title}">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Customer Code:" FontSize="Medium" />
+        <Label Text="{Binding Customer.Code}" FontSize="Small"/>
+        <Label Text="Name:" FontSize="Medium" />
+        <Label Text="{Binding Customer.Name}" FontSize="Small"/>
+        <Label Text="Address:" FontSize="Medium" />
+        <Label Text="{Binding Customer.Address}" FontSize="Small"/>
+        <Label Text="Phone:" FontSize="Medium" />
+        <Label Text="{Binding Customer.Phone}" FontSize="Small"/>
+    </StackLayout>
+</ContentPage>

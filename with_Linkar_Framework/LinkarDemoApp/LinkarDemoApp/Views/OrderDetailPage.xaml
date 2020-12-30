@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LinkarDemoApp.Views.OrderDetailPage"
+             xmlns:local="clr-namespace:LinkarDemoApp"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DateToStringConverter x:Key="dateToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Order Number:" FontSize="Medium" />
+            <Label Text="{Binding Order.Id}" FontSize="Small"/>
+            <Label Text="Customer:" FontSize="Medium" />
+            <Label Text="{Binding Order.Customer}" FontSize="Small"/>
+            <Label Text="Date:" FontSize="Medium" />
+            <Label Text="{Binding Order.Date, Converter={StaticResource dateToString}}" FontSize="Small"/>
+            <Label Text="Total Order:" FontSize="Medium" />
+            <Label FontSize="Small">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="$ " />
+                        <Span Text="{Binding Order.ITotalOrder}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="Customer Name:" FontSize="Medium" />
+            <Label Text="{Binding Order.ICustomerName}" FontSize="Small"/>
+            <Label Text="Order Items" FontSize="Medium" />
+            <ListView x:Name="MvListView"
+                ItemsSource="{Binding Order.LstLstItems}"
+                VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                ItemSelected="OnMvSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Item Id: " />
+                                            <Span Text="{Binding Item}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="13" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Total Line: " />
+                                            <Span Text="$ " />
+                                            <Span Text="{Binding ITotalLine}" />                                            
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

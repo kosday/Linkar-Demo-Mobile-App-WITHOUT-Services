@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Linkar</name>
+    </assembly>
+    <members>
+        <member name="T:Linkar.ConnectionInfo">
+            <summary>
+            Contains the necessary information to stablished a permanent session with LinkarSERVER. Used by Login operation and Permanent operations.
+            </summary>
+        </member>
+        <member name="P:Linkar.ConnectionInfo.CredentialOptions">
+            <summary>
+            Contains the necessary information to connect to the Database.
+            </summary>
+        </member>
+        <member name="P:Linkar.ConnectionInfo.SessionId">
+            <summary>
+            The Session Id that identify the user logged.
+            </summary>
+        </member>
+        <member name="P:Linkar.ConnectionInfo.LkConnectionId">
+            <summary>
+            The internal Id of the connection stablished with Linkar Server
+            </summary>
+        </member>
+        <member name="P:Linkar.ConnectionInfo.PublicKey">
+            <summary>
+            The public key used to encrypt communications between Linkar Server and Linkar Clients
+            </summary>
+        </member>
+        <member name="M:Linkar.ConnectionInfo.#ctor">
+            <summary>
+            Initializes a new instance of the CredentialOptions class
+            </summary>
+        </member>
+        <member name="M:Linkar.ConnectionInfo.#ctor(System.String,System.String,System.String,Linkar.CredentialOptions)">
+            <summary>
+            Initializes a new instance of the CredentialOptions class
+            </summary>
+            <param name="sessionId">A unique Identifier for the stablished session in LinkarSERVER. This value is set after Login operation.</param>
+            <param name="lkConnectionId">Internal LinkarSERVER ID to keep the session. This value is set after Login operation.</param>
+            <param name="publicKey">The public key used to encrypt transmission data between LinkarCLIENT and LinkarSERVER. This value is set after Login operation.</param>
+            <param name="crdOptions">The CredentialOptions object with the necessary information to connect to the LinkarSERVER.</param>
+        </member>
+        <member name="T:Linkar.CredentialOptions">
+            <summary>
+            Contains the necessary information to connect to the Database.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.Host">
+            <summary>
+            IP Address or hostname where Linkar Server is listening.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.EntryPoint">
+            <summary>
+            The EntryPoint Name defined in Linkar Server.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.Port">
+            <summary>
+            Port number where the EntryPoint keeps listening.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.Username">
+            <summary>
+            Linkar Server username.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.Password">
+            <summary>
+            Password of the user Linkar Server.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.Language">
+            <summary>
+            Used to make the database routines know in which language they must answer. The Error messages coming from the Database are in English by default, but you can customize them.
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.FreeText">
+            <summary>
+            Free text that will appear in the Linkar MANAGER to identify in an easy way who is making the petition. For example if the call is made from a ERP, here we can write "MyERP".
+            </summary>
+        </member>
+        <member name="P:Linkar.CredentialOptions.PluginId">
+            <summary>
+            Internal code to enable its use in Linkar Server. Used by Plugin developers.
+            </summary>
+        </member>
+        <member name="M:Linkar.CredentialOptions.#ctor">
+            <summary>
+            Initializes a new instance of the CredentialOptions class
+            </summary>
+        </member>
+        <member name="M:Linkar.CredentialOptions.#ctor(System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the CredentialsOptions class
+            </summary>
+            <param name="host">Address or hostname where Linkar Server is listening.</param>
+            <param name="entrypoint">The EntryPoint Name defined in Linkar Server.</param>
+            <param name="port">Port number where the EntryPoint keeps listening.</param>
+            <param name="username">Linkar Server username.</param>
+            <param name="password">Password of the Linkar Server user.</param>
+            <param name="language">Used to make the database routines know in which language they must answer. The Error messages coming from the Database are in English by default, but you can customize</param>
+            <param name="freeText">Free text that will appear in the Linkar MANAGER to identify in an easy way who is making the petition. For example if the call is made from a ERP, here we can write "MyERP".</param>
+            <param name="pluginId">Internal ID for plugin to enable its use in Linkar Server. Used by Plugin developers.</param>
+        </member>
+        <member name="T:Linkar.NamespaceDoc">
+            <summary>
+            Namespace for Linkar library
+            </summary>
+        </member>
+        <member name="T:Linkar.Linkar">
+            <summary>
+            Class with two static functions to perform Direct and Persistent operation with Linkar Server
+            </summary>
+        </member>
+        <member name="P:Linkar.Linkar.ClientVersion">
+            <summary>
+            Client Version
+            </summary>
+        </member>
+        <member name="M:Linkar.Linkar.ExecutePersistentOperation(Linkar.ConnectionInfo,System.Byte,System.String,System.Byte,System.Byte,System.Int32)">
+            <summary>
+            Execute "persistent operations". These operations required that a session will be stablished previously with Login operation.
+            </summary>
+            <param name="connectionInfo">Contains the data necessary to access an established LinkarSERVER session.</param>
+            <param name="operationCode">Code of the operation to be performed</param>
+            <param name="operationArgs">Specific arguments of every operation</param>
+            <param name="inputDataFormat">Format of the input data</param>
+            <param name="outputDataFormat">Format of the output data</param>
+            <param name="receiveTimeout">Maximum time in seconds to wait the response from LinkarSERVER. A value less or equal to 0, wait for response indefinitely</param>
+            <returns>Complex string with the result of the operation</returns>
+        </member>
+        <member name="M:Linkar.Linkar.ExecuteDirectOperation(Linkar.CredentialOptions,System.Byte,System.String,System.Byte,System.Byte,System.Int32)">
+            <summary>
+            Execute "direct operations". These operations don't stablish a permanent session. Once the operations is finished, the session is closed.
+            </summary>
+            <param name="credentialOptions">The credentials for access to LinkarSERVER.</param>
+            <param name="operationCode">Code of the operation to be performed</param>
+            <param name="operationArgs">Specific arguments of every operation</param>
+            <param name="inputDataFormat">Format of the input data</param>
+            <param name="outputDataFormat">Format of the output data</param>
+            <param name="receiveTimeout">Maximum time in seconds to wait the response from LinkarSERVER. A value less or equal to 0, wait for response indefinitely</param>
+            <returns>Complex string with the result of the operation</returns>
+        </member>
+        <member name="T:Linkar.LkException">
+            <summary>
+            The <see cref="M:Linkar.Linkar.ExecuteDirectOperation(Linkar.CredentialOptions,System.Byte,System.String,System.Byte,System.Byte,System.Int32)"/> and <see cref="M:Linkar.Linkar.ExecutePersistentOperation(Linkar.ConnectionInfo,System.Byte,System.String,System.Byte,System.Byte,System.Int32)"/> functions can generate LkException exceptions when a LINKAR system error occurs.
+            </summary>
+        </member>
+        <member name="T:Linkar.LkException.ERRORCODE">
+            <summary>
+            Enumerated type of the error codes.
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0001">
+            <summary>
+            Session Id NOT VALID
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0002">
+            <summary>
+            Socket Exception (ONLY with COM assembly)
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0003">
+            <summary>
+            This error refers to errors originated in LINKAR Server. In the LkException InternalCode and InternalMessage properties you can check the LINKAR Server error codes. (See LINKAR Server error table)
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0004">
+            <summary>
+            Exception (ONLY with COM assembly)
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0005">
+            <summary>
+            IP or Host NOT VALID
+            </summary>
+        </member>
+        <member name="F:Linkar.LkException.ERRORCODE.C0009">
+            <summary>
+            CHECKSUM ERROR in Linkar communications
+            </summary>
+        </member>
+        <member name="P:Linkar.LkException.ErrorCode">
+            <summary>
+            Enumerated type of the error codes.
+            </summary>
+        </member>
+        <member name="P:Linkar.LkException.ErrorMessage">
+            <summary>
+            Error message.
+            </summary>
+        </member>
+        <member name="P:Linkar.LkException.InternalCode">
+            <summary>
+            For C0003 code errors, this property contains the LINKAR Server error code (see Error List).
+            </summary>
+        </member>
+        <member name="P:Linkar.LkException.InternalMessage">
+            <summary>
+            For C0003 code errors, this property contains the LINKAR Server error message (See Server Error List)
+            </summary>
+        </member>
+        <member name="M:Linkar.LkException.#ctor(Linkar.LkException.ERRORCODE,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="errorCode">Enumerated type with the error code.</param>
+            <param name="internalException">Internal exception message error.</param>
+        </member>
+        <member name="M:Linkar.LkException.#ctor(Linkar.LkException.ERRORCODE)">
+            <summary>
+            
+            </summary>
+            <param name="errorCode">Enumerated type with the error code.</param>
+        </member>
+    </members>
+</doc>
